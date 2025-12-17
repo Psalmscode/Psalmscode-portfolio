@@ -336,7 +336,6 @@ header .glitch {
       transition: .3s;
     }
     button:hover { background: var(--accent-hover); }
-   }
 
   .site-footer {
   position: relative;   /* NOT absolute, NOT fixed */
