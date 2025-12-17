@@ -1,5 +1,4 @@
-
-    * {
+ * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -8,58 +7,148 @@
 
     body {
       font-family: "Poppins", sans-serif;
-      /* Use the hero image as a site-wide fixed background with a dark overlay for readability */
-      background-image: linear-gradient(rgba(13,13,13,0.7), rgba(13,13,13,0.7)), url('assets/hero-bg.jpg');
+      /* Use the hero image as a site-wide fixed background with a light overlay for visibility */
+      background-image: linear-gradient(rgba(13,13,13,0.4), rgba(13,13,13,0.4)), url('assets/hero-bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: #fff;
       line-height: 1.6;
-      /* Fallback color while image loads */
       background-color: #0d0d0d;
     }
 
     a { text-decoration: none; color: inherit; }
 
-    /* Header */
+    /* Header (mobile-first) */
     header {
       width: 100%;
-      padding: 20px 10%;
+      padding: 12px 5%;
       position: fixed;
       top: 0;
       left: 0;
       z-index: 1000;
+      /* translucent background with blur so header shows the site background underneath */
+      background: rgba(13,13,13,0.15);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+/* GLITCH BASE (SAFE FOR HEADER + FOOTER) */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
-    .logo {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: .5px;
-      color: #009acd;
+.glitch {
+  position: relative;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #ff1493;
+  line-height: 1;
+  user-select: none;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.glitch::before {
+  color: #00ffff;
+  z-index: -1;
+  transform: translate(-2px, -2px);
+  clip-path: inset(0 0 60% 0);
+  animation: glitch-top 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  color: #ff00ff;
+  z-index: -2;
+  transform: translate(2px, 2px);
+  clip-path: inset(60% 0 0 0);
+  animation: glitch-bottom 2s infinite linear alternate-reverse;
+}
+
+/* ANIMATIONS (SOFTER, NO JITTER) */
+@keyframes glitch-top {
+  0% { transform: translate(0,0); clip-path: inset(0 0 60% 0); }
+  25% { transform: translate(-2px,-1px); clip-path: inset(0 0 50% 0); }
+  50% { transform: translate(-1px,-2px); clip-path: inset(10% 0 50% 0); }
+  75% { transform: translate(-3px,0); clip-path: inset(0 0 65% 0); }
+ 100% { transform: translate(0,0); clip-path: inset(0 0 60% 0); }
+}
+
+@keyframes glitch-bottom {
+  0% { transform: translate(0,0); clip-path: inset(60% 0 0 0); }
+ 25% { transform: translate(2px,1px); clip-path: inset(55% 0 5% 0); }
+ 50% { transform: translate(1px,2px); clip-path: inset(50% 0 10% 0); }
+ 75% { transform: translate(3px,0); clip-path: inset(60% 0 0 0); }
+ 100% { transform: translate(0,0); clip-path: inset(60% 0 0 0); }
+}
+
+/* Ensure footer/logo can use the same glitch markup */
+.footer-logo .glitch {
+  color: #ff1493;
+  display: inline-block;
+}
+.logo { 
+  font-size: 1.5rem; 
+  font-weight: 600; 
+  letter-spacing: .5px;
+  color: #ff1493; /* Samson Visuals pink */}
+
+/* Header-specific glitch override to match footer weight */
+header .glitch {
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ff1493;
+  font-size: 1.1rem; /* slightly larger on mobile */
+}
+
+    /* Mobile-first navigation: hidden list and vertical layout */
+    nav ul {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      list-style: none;
+      background: rgba(13,13,13,0.85);
+      padding: 10px 12px;
+      border-radius: 8px;
+      position: absolute;
+      top: 100%;
+      right: 5%;
+      min-width: 160px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
     }
 
-    nav ul {
+    /* When the menu is toggled (JS adds `show`), display the nav */
+    #nav-links.show {
       display: flex;
-      gap: 30px;
-      list-style: none;
     }
 
     nav ul li a {
       font-weight: 400;
       transition: .3s;
     }
-    nav ul li a:hover { color: #00bfff; }
+    nav ul li a:hover { color: #fd42a6; }
 
     .menu-btn {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
+      z-index: 1100;
     }
 
     .menu-btn span {
@@ -102,7 +191,7 @@
 
     .typing::after {
       content: '';
-      border-right: 3px solid #00bfff;
+      border-right: 3px solid #ff1493;
       padding-right: 2px;
       animation: blink 0.7s infinite;
     }
@@ -126,13 +215,13 @@
 
     .btn {
       padding: 12px 30px;
-      background: #00bfff;
+      background: #ff1493;
       color: #fff;
       border-radius: 6px;
       display: inline-block;
       transition: .3s;
     }
-    .btn:hover { background: #009acd; }
+    .btn:hover { background: #fd42a6; }
 
     /* About */
     #about {
@@ -169,7 +258,7 @@
       transition: .3s;
     }
     .skill-card:hover {
-      border-color: #00bfff;
+      border-color:  #fd42a6;
       transform: translateY(-5px);
     }
 
@@ -191,7 +280,7 @@
       transition: .3s;
     }
     .project:hover {
-      border-color: #00bfff;
+      border-color: #fd42a6;
       transform: translateY(-5px);
     }
     .project-img {
@@ -203,7 +292,7 @@
     }
     .project-links a {
       margin-right: 10px;
-      color: #00bfff;
+      color: #ff1493;
     }
 
     /* Contact */
@@ -228,49 +317,159 @@
     }
     button {
       padding: 12px;
-      background: #00bfff;
+      background: #ff1493;
       border: none;
       color: #fff;
       cursor: pointer;
       border-radius: 6px;
       transition: .3s;
     }
-    button:hover { background: #009acd; }
+    button:hover { background: #fd42a6;
+   }
 
-    footer {
-      text-align: center;
-      padding: 25px 0;
-      margin-top: 40px;
-      color: #aaa;
-    }
+  .site-footer {
+  position: relative;   /* NOT absolute, NOT fixed */
+  width: 100%;
+  z-index: 1;
 
-    /* Responsive */
-    /* Use a medium-sized background for <= 1200px */
-    @media (max-width: 1200px) {
-      #hero {
-        background-image: linear-gradient(rgba(13,13,13,0.7), rgba(13,13,13,0.7)), url('assets/hero-bg-768.jpg');
-        background-attachment: fixed;
-      }
-    }
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-    @media (max-width: 768px) {
-      nav ul {
-        position: absolute;
-        top: 70px;
-        right: 10%;
-        background: #111;
-        flex-direction: column;
-        width: 200px;
-        padding: 20px;
-        border-radius: 10px;
-        display: none;
-      }
-      nav ul.show { display: flex; }
-      .menu-btn { display: flex; }
-      /* On small screens, use a smaller background and disable fixed attachment for performance and UX */
-      #hero {
-        background-image: linear-gradient(rgba(13,13,13,0.8), rgba(13,13,13,0.8)), url('assets/hero-bg-480.jpg');
-        background-attachment: scroll;
-        padding: 60px 6%;
-      }
-    }
+  padding: 80px 0 40px;
+  margin-top: 100px; /* space from section above */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 25px 0;
+  color: #ff1493; /* Samson Visuals pink */
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.socials a {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  transform: translateY(-5px);
+}
+
+.copyright {
+  font-size: 14px;
+  color: #222;
+}
+.socials .fb:hover {
+  background: #1a6ed8;
+  color: white;
+}
+.fb{
+	color: #1a6ed8;
+}
+.socials .x:hover {
+  background: #1da1f2;
+  color: white;
+}
+.x{
+	color: #1da1f2;
+}
+.socials .lik:hover {
+  background: #0077b5;
+  color: white;
+}
+.lik{
+	color: #0077b5;
+}
+.socials .git:hover {
+  background: #000;
+  color: white;
+}
+.git{
+	color: #000;
+}
+ .socials .sta i {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;   
+}
+.socials .sta:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+.socials .sta:hover i {
+  -webkit-text-fill-color: white;
+}
+
+/* Desktop / larger screens: restore horizontal nav and larger header */
+@media (min-width: 768px) {
+  header {
+    padding: 20px 10%;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    background: transparent;
+    padding: 0;
+    position: static;
+    min-width: auto;
+    box-shadow: none;
+  }
+
+  #nav-links.show {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  header .glitch {
+    font-size: 1.6rem;
+  }
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+  background-color: #ff008c;
+  transform: scale(1.1);
+}

@@ -6,6 +6,7 @@
   <title>Full-Stack Developer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -14,7 +15,9 @@
 
   <!-- Header -->
   <header>
-    <div class="logo">Psalmscode</div>
+    <div class="glitch-wrapper">
+      <span class="glitch" data-text="PSALMSCODE">PSALMSCODE</span>
+    </div>
     <nav>
       <ul id="nav-links">
         <li><a href="#hero">Home</a></li>
@@ -102,27 +105,57 @@
 
     </div>
   </section>
+<form
+  method="POST"
+  action="https://formsubmit.co/1eb37522ccacd66bb0c03e1edc9fa43f"
+>
+  <input type="hidden" name="_captcha" value="false">
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <form onsubmit="event.preventDefault(); alert('Message Sent!')">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Message" required></textarea>
+
+  <button type="submit">Send Message</button>
+</form>
+
+
   </section>
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="socials">
+      <a href="https://facebook.com/Moses Jnr" target="_blank" class="icon fb">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://twitter.com/mutiple" target="_blank" class="icon x">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="https://linkedin.com/in/Psalmson Goddid" target="_blank" class="icon lik">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+  <a href="https://github.com/Psalmscode" target="_blank" class="icon git">
+    <i class="fab fa-github"></i>
+  </a>
+  <a href="https://instagram.com/psalmsongoddid" target="_blank" class="icon sta">
+    <i class="fab fa-instagram"></i>
+  </a> 
+    </div>
 
-  <footer>
-    © 2025 Psalmscode Portfolio. All Rights Reserved.
-  </footer>
+    <h2 class="footer-logo"><span class="glitch-wrapper"><span class="glitch" data-text="PSALMSCODE">PSALMSCODE</span></span></h2>
+
+    <p class="copyright">
+      © 2025 Psalmscode Portfolio. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+</button>
 
   <script>
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("show");
     }
   </script>
-
 </body>
 </html>
