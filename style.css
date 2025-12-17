@@ -5,6 +5,16 @@
       scroll-behavior: smooth;
     }
 
+:root {
+  --accent: #ff1493;
+  --accent-hover: #fd42a6;
+  --bg: #0d0d0d;
+  --text: #ffffff;
+  --muted: #ccc;
+  --card-bg: #111;
+  --card-border: #222;
+  --glass: rgba(13,13,13,0.15);
+}
     body {
       font-family: "Poppins", sans-serif;
       /* Use the hero image as a site-wide fixed background with a light overlay for visibility */
@@ -13,9 +23,9 @@
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      color: #fff;
+      color: var(--text);
       line-height: 1.6;
-      background-color: #0d0d0d;
+      background-color: var(--bg);
     }
 
     a { text-decoration: none; color: inherit; }
@@ -46,7 +56,7 @@
   position: relative;
   font-weight: 700;
   letter-spacing: 3px;
-  color: #ff1493;
+  color: var(--accent);
   line-height: 1;
   user-select: none;
   display: inline-block;
@@ -99,20 +109,21 @@
 
 /* Ensure footer/logo can use the same glitch markup */
 .footer-logo .glitch {
-  color: #ff1493;
+  color: var(--accent);
   display: inline-block;
 }
 .logo { 
   font-size: 1.5rem; 
   font-weight: 600; 
   letter-spacing: .5px;
-  color: #ff1493; /* Samson Visuals pink */}
+  color: var(--accent);
+}
 
 /* Header-specific glitch override to match footer weight */
 header .glitch {
   font-weight: 800;
   letter-spacing: 2px;
-  color: #ff1493;
+  color: var(--accent);
   font-size: 1.1rem; /* slightly larger on mobile */
 }
 
@@ -141,7 +152,7 @@ header .glitch {
       font-weight: 400;
       transition: .3s;
     }
-    nav ul li a:hover { color: #fd42a6; }
+    nav ul li a:hover { color: var(--accent-hover); }
 
     .menu-btn {
       display: flex;
@@ -154,7 +165,7 @@ header .glitch {
     .menu-btn span {
       width: 25px;
       height: 3px;
-      background: #fff;
+      background: var(--text);
     }
 
     /* HERO SECTION */
@@ -177,7 +188,7 @@ header .glitch {
     #hero p {
       font-size: 1.2rem;
       margin-bottom: 25px;
-      color: #ccc;
+      color: var(--muted);
     }
 
     .typing {
@@ -191,7 +202,7 @@ header .glitch {
 
     .typing::after {
       content: '';
-      border-right: 3px solid #ff1493;
+      border-right: 3px solid var(--accent);
       padding-right: 2px;
       animation: blink 0.7s infinite;
     }
@@ -215,13 +226,13 @@ header .glitch {
 
     .btn {
       padding: 12px 30px;
-      background: #ff1493;
-      color: #fff;
+      background: var(--accent);
+      color: var(--text);
       border-radius: 6px;
       display: inline-block;
       transition: .3s;
     }
-    .btn:hover { background: #fd42a6; }
+    .btn:hover { background: var(--accent-hover); }
 
     /* About */
     #about {
@@ -233,7 +244,7 @@ header .glitch {
     }
     #about p {
       max-width: 700px;
-      color: #ccc;
+      color: var(--muted);
     }
 
     /* Skills */
@@ -250,15 +261,15 @@ header .glitch {
       gap: 25px;
     }
     .skill-card {
-      background: #111;
+      background: var(--card-bg);
       padding: 20px;
       border-radius: 8px;
       text-align: center;
-      border: 1px solid #222;
+      border: 1px solid var(--card-border);
       transition: .3s;
     }
     .skill-card:hover {
-      border-color:  #fd42a6;
+      border-color:  var(--accent-hover);
       transform: translateY(-5px);
     }
 
@@ -273,14 +284,14 @@ header .glitch {
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
     .project {
-      background: #111;
+      background: var(--card-bg);
       padding: 20px;
       border-radius: 8px;
-      border: 1px solid #222;
+      border: 1px solid var(--card-border);
       transition: .3s;
     }
     .project:hover {
-      border-color: #fd42a6;
+      border-color: var(--accent-hover);
       transform: translateY(-5px);
     }
     .project-img {
@@ -292,7 +303,7 @@ header .glitch {
     }
     .project-links a {
       margin-right: 10px;
-      color: #ff1493;
+      color: var(--accent);
     }
 
     /* Contact */
@@ -311,20 +322,20 @@ header .glitch {
       padding: 12px;
       border: none;
       border-radius: 6px;
-      background: #111;
-      color: #fff;
-      border: 1px solid #222;
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1px solid var(--card-border);
     }
     button {
       padding: 12px;
-      background: #ff1493;
+      background: var(--accent);
       border: none;
-      color: #fff;
+      color: var(--text);
       cursor: pointer;
       border-radius: 6px;
       transition: .3s;
     }
-    button:hover { background: #fd42a6;
+    button:hover { background: var(--accent-hover); }
    }
 
   .site-footer {
@@ -351,7 +362,7 @@ header .glitch {
   font-weight: 800;
   letter-spacing: 2px;
   margin: 25px 0;
-  color: #ff1493; /* Samson Visuals pink */
+  color: var(--accent); /* Samson Visuals pink */
 }
 
 .socials {
@@ -448,6 +459,18 @@ header .glitch {
 
   header .glitch {
     font-size: 1.6rem;
+  }
+}
+
+/* Mobile adjustments: disable fixed background and heavy backdrop filters for better performance */
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+  header, .site-footer {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(13,13,13,0.35);
   }
 }
 
