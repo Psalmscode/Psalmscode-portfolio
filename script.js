@@ -1,11 +1,17 @@
+// Mobile menu toggle
 function toggleMenu() {
   document.getElementById("nav-links").classList.toggle("show");
 }
+
+// Wait for DOM to load
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
   const status = document.getElementById("formStatus");
   const button = document.getElementById("submitBtn");
 
-  form.addEventListener("submit", async function (e) {
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     status.textContent = "Sending message...";
@@ -20,9 +26,7 @@ function toggleMenu() {
         "https://formsubmit.co/ajax/mosesiyanusamson@gmail.com",
         {
           method: "POST",
-          headers: {
-            "Accept": "application/json"
-          },
+          headers: { "Accept": "application/json" },
           body: formData
         }
       );
@@ -34,10 +38,11 @@ function toggleMenu() {
         status.style.color = "lime";
         form.reset();
       } else {
-        status.textContent = "Something went wrong. Please try again.";
+        status.textContent = "Something went wrong. Try again.";
         status.style.color = "red";
       }
-    } catch (error) {
+
+    } catch (err) {
       status.textContent = "Network error. Try again later.";
       status.style.color = "red";
     } finally {
@@ -45,3 +50,4 @@ function toggleMenu() {
       button.textContent = "Send Message";
     }
   });
+});
