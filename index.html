@@ -107,41 +107,45 @@
   </section>
 <section id="contact">
   <h2>Contact Me</h2>
+<form
+  id="contactForm"
+  method="POST"
+  action="https://formsubmit.co/mosesiyanusamson@gmail.com"
+>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="New Portfolio Message">
+  <input type="hidden" name="_template" value="table">
 
-  <form id="contactForm">
-    <!-- Disable FormSubmit captcha -->
-    <input type="hidden" name="_captcha" value="false">
+  <!-- Honeypot -->
+  <input type="text" name="_honey" style="display:none">
 
-    <!-- Anti-spam honeypot -->
-    <input type="text" name="_honey" style="display:none">
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+  >
 
-    <input
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      required
-    >
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+  >
 
-    <input
-      type="email"
-      name="email"
-      placeholder="Your Email"
-      required
-    >
+  <textarea
+    name="message"
+    rows="5"
+    placeholder="Message"
+    required
+  ></textarea>
 
-    <textarea
-      name="message"
-      rows="5"
-      placeholder="Message"
-      required
-    ></textarea>
+  <button type="submit" id="submitBtn">
+    Send Message
+  </button>
 
-    <button type="submit" id="submitBtn">
-      Send Message
-    </button>
-
-    <p id="formStatus"></p>
-  </form>
+  <p id="formStatus"></p>
+</form>
 </section>
 
 <footer class="site-footer">
