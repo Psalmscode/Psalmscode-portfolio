@@ -25,7 +25,7 @@ function toggleMenu() {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/7ec39a1c3830439622b741a785a2740b",
+        "https://formsubmit.co/ajax/mosesiyanusamson@gmail.com",
         {
           method: "POST",
           headers: {
