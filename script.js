@@ -1,47 +1,58 @@
 // Mobile menu toggle
 function toggleMenu() {
-  document.getElementById("nav-links").classList.toggle("show");
+  const nav = document.getElementById("nav-links");
+  if (nav) nav.classList.toggle("show");
 }
 
-const form = document.getElementById("contactForm");
-const status = document.getElementById("formStatus");
-const button = document.getElementById("submitBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
+  const button = document.getElementById("submitBtn");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  status.textContent = "Sending message...";
-  status.style.color = "#aaa";
-  button.disabled = true;
-
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(
-      "https://formsubmit.co/ajax/mosesiyanusamson@gmail.com",
-      {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json"
-        }
-      }
-    );
-
-    const result = await response.json();
-
-    if (response.ok) {
-      status.textContent = "Message sent successfully!";
-      status.style.color = "lime";
-      form.reset();
-    } else {
-      status.textContent = "Failed to send message.";
-      status.style.color = "red";
-    }
-  } catch (err) {
-    status.textContent = "Network error.";
-    status.style.color = "red";
-  } finally {
-    button.disabled = false;
+  // Safety check
+  if (!form || !status || !button) {
+    console.error("Form elements not found");
+    return;
   }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    status.textContent = "Sending message...";
+    status.style.color = "#aaa";
+    button.disabled = true;
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/mosesiyanusamson@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: formData
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok && result.success === "true") {
+        status.textContent = "Message sent successfully!";
+        status.style.color = "lime";
+        form.reset();
+      } else {
+        status.textContent = "Message failed. Please try again.";
+        status.style.color = "red";
+        console.error(result);
+      }
+    } catch (error) {
+      status.textContent = "Network error. Try again later.";
+      status.style.color = "red";
+      console.error(error);
+    } finally {
+      button.disabled = false;
+    }
+  });
 });
